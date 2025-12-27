@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout - ASB Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body { 
+            background: #e2e8f0; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
+
+        .logout-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 400px; 
+            padding: 40px 25px; 
+            border-radius: 28px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            text-align: center; 
+        }
+
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            background: #f0fdf4;
+            color: #22c55e;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+            border: 2px solid #dcfce7;
+        }
+
+        .brand { color: var(--primary-color); font-size: 24px; font-weight: 700; }
+        .location { color: var(--primary-color); font-size: 13px; font-weight: 600; margin-top: -5px; display: block; margin-bottom: 15px; }
+        
+        .msg { color: var(--text-main); font-size: 16px; font-weight: 700; margin-bottom: 5px; display: block; }
+        .sub-msg { color: var(--text-muted); font-size: 13px; margin-bottom: 25px; display: block; }
+
+        /* Summary Table */
+        .summary-box {
+            background: #f8fafc;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #f1f5f9;
+        }
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .summary-row:last-child { border-bottom: none; }
+        .label { font-size: 12px; color: var(--text-muted); text-transform: uppercase; }
+        .value { font-size: 14px; font-weight: 700; color: var(--text-main); }
+
+        .btn-relogin { 
+            width: 100%; 
+            background: var(--primary-color); 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            border-radius: 14px; 
+            font-weight: 700; 
+            cursor: pointer; 
+            text-decoration: none;
+            display: block;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .btn-relogin:hover { background: var(--primary-dark); box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3); }
+
+        .footer { margin-top: 25px; border-top: 1px solid #f1f5f9; padding-top: 20px; }
+        .wa-text { font-size: 12px; color: var(--text-muted); }
+        .wa-link { color: #16a34a; text-decoration: none; font-weight: 700; }
+    </style>
+</head>
+<body>
+
+<div class="logout-card">
+    <div class="icon-box">✓</div>
+    <div class="brand">ASB Network</div>
+    <span class="location">Wifi Bakan Loa</span>
+    
+    <span class="msg">Berhasil Keluar</span>
+    <span class="sub-msg">Sesi internet Anda telah dihentikan.</span>
+
+    <div class="summary-box">
+        <div class="summary-row">
+            <span class="label">User</span>
+            <span class="value">$(username)</span>
+        </div>
+        <div class="summary-row">
+            <span class="label">Durasi Terakhir</span>
+            <span class="value">$(uptime)</span>
+        </div>
+        <div class="summary-row">
+            <span class="label">Total Download</span>
+            <span class="value">$(bytes-out-nice)</span>
+        </div>
+    </div>
+
+    <a href="$(link-login)" class="btn-relogin">LOGIN KEMBALI</a>
+
+    <div class="footer">
+        <p class="wa-text">Masa aktif habis? Hubungi Admin:</p>
+        <a href="https://wa.me/6285782781843" class="wa-link">0857 8278 1843</a>
+    </div>
+</div>
+
+</body>
+</html>
