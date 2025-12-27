@@ -1,48 +1,65 @@
 $(if logged-in == 'yes')
-<meta http-equiv="refresh" content="0;url=http://login.wifi/status">
+<meta http-equiv="refresh" content="0;url=$(link-status)">
 $(endif)
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="-1">
     <title>Login - ASB Network</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --primary-color: #2563eb;
             --primary-dark: #1d4ed8;
-            --secondary-color: #f8fafc;
             --accent-color: #10b981;
             --text-main: #1e293b;
             --text-muted: #64748b;
             --danger: #ef4444;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
-
-        body { 
-            background: #e2e8f0; 
-            min-height: 100vh; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 20px; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        .login-card { 
-            background: white; 
-            width: 100%; 
-            max-width: 400px; 
-            padding: 35px 25px; 
-            border-radius: 28px; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
-            text-align: center; 
+        body {
+            background: #e2e8f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
-        .brand-section { margin-bottom: 20px; }
-        .brand { color: var(--primary-color); font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
-        .sub-brand { color: var(--text-muted); font-size: 14px; }
+        .login-card {
+            background: #fff;
+            width: 100%;
+            max-width: 400px;
+            padding: 35px 25px;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,.15);
+            text-align: center;
+        }
+
+        .brand {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .sub-brand {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: block;
+        }
 
         .error-msg {
             background: #fee2e2;
@@ -55,55 +72,70 @@ $(endif)
             border: 1px solid #fecaca;
         }
 
-        .promo-banner { 
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); 
-            color: white; 
-            padding: 18px; 
-            border-radius: 18px; 
+        .promo-banner {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: #fff;
+            padding: 18px;
+            border-radius: 18px;
             margin-bottom: 20px;
         }
-        .promo-desc { font-size: 12px; opacity: 0.9; display: block; text-transform: uppercase; letter-spacing: 1px; }
-        .promo-price { font-size: 22px; font-weight: 700; display: block; }
 
-        form { margin-bottom: 20px; }
-        input { 
-            width: 100%; 
-            padding: 15px; 
-            border: 2px solid #f1f5f9; 
-            border-radius: 14px; 
-            outline: none; 
-            transition: 0.3s; 
-            text-align: center; 
-            font-size: 16px; 
-            font-weight: 600; 
+        .promo-desc {
+            font-size: 12px;
+            opacity: .9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        .promo-price {
+            font-size: 22px;
+            font-weight: 700;
+            display: block;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 14px;
+            border: 2px solid #f1f5f9;
             background: #f8fafc;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 10px;
+            outline: none;
         }
-        input:focus { border-color: var(--primary-color); background: white; }
-        
-        .btn-connect { 
-            width: 100%; 
-            background: var(--primary-color); 
-            color: white; 
-            border: none; 
-            padding: 16px; 
-            border-radius: 14px; 
-            font-weight: 700; 
-            margin-top: 10px;
-            cursor: pointer; 
-            transition: 0.3s;
+
+        input:focus {
+            border-color: var(--primary-color);
+            background: #fff;
         }
-        .btn-connect:hover { background: var(--primary-dark); }
+
+        .btn-connect {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .btn-connect:hover {
+            background: var(--primary-dark);
+        }
 
         .trial-link {
             display: block;
-            margin-bottom: 20px;
+            margin: 15px 0 20px;
             padding: 12px;
             background: #f1f5f9;
-            color: var(--primary-color);
-            text-decoration: none;
             border-radius: 14px;
+            text-decoration: none;
             font-weight: 600;
-            font-size: 14px;
+            color: var(--primary-color);
             border: 1px solid #e2e8f0;
         }
 
@@ -114,30 +146,47 @@ $(endif)
             border-radius: 18px;
             margin-bottom: 25px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
             text-align: left;
         }
-        .home-package-info b { color: #16a34a; font-size: 15px; display: block; }
-        .home-package-info span { font-size: 12px; color: #15803d; }
-        .home-price .amount { display: block; font-weight: 700; color: #16a34a; font-size: 16px; text-align: right; }
 
-        .footer { 
-            font-size: 12px; 
-            color: var(--text-muted); 
-            border-top: 1px solid #f1f5f9; 
-            padding-top: 20px; 
+        .home-package b {
+            color: #16a34a;
+            font-size: 15px;
+            display: block;
         }
-        .wa-link { color: #16a34a; text-decoration: none; font-weight: 700; font-size: 14px; }
+
+        .home-package span {
+            font-size: 12px;
+            color: #15803d;
+        }
+
+        .price {
+            font-weight: 700;
+            color: #16a34a;
+            font-size: 16px;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+        }
+
+        .wa-link {
+            color: #16a34a;
+            text-decoration: none;
+            font-weight: 700;
+        }
     </style>
 </head>
 <body>
 
 <div class="login-card">
-    <div class="brand-section">
-        <div class="brand">ASB Network</div>
-        <span class="sub-brand">Internet Cepat & Stabil</span>
-    </div>
+
+    <div class="brand">ASB Network</div>
+    <span class="sub-brand">Internet Cepat & Stabil</span>
 
     $(if error)
     <div class="error-msg">$(error)</div>
@@ -149,34 +198,31 @@ $(endif)
     </div>
 
     <form action="$(link-login-only)" method="post">
-        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input type="hidden" name="dst" value="$(link-status)">
         <input name="username" type="text" placeholder="Masukkan Kode Voucher" required autocomplete="off">
-        <input name="password" type="hidden" value="">
+        <input type="hidden" name="password" value="">
         <button type="submit" class="btn-connect">HUBUNGKAN SEKARANG</button>
     </form>
 
     $(if trial == 'yes')
-<a href="$(link-login-only)?dst=$(link-status)&amp;username=T-$(mac-esc)" class="trial-link">
-    COBA GRATIS (5 MENIT)
-</a>
-
+    <a href="$(link-login-only)?dst=$(link-status)&amp;username=T-$(mac-esc)" class="trial-link">
+        COBA GRATIS (5 MENIT)
+    </a>
     $(endif)
 
     <div class="home-package">
-        <div class="home-package-info">
+        <div>
             <b>Pasang WiFi Rumah</b>
-            <span>Tanpa Kuota (Unlimited)</span>
+            <span>Unlimited / Bulan</span>
         </div>
-        <div class="home-price">
-            <span class="amount">135rb</span>
-            <span style="font-size: 10px; color: #15803d;">/ BULAN</span>
-        </div>
+        <div class="price">135rb</div>
     </div>
 
     <div class="footer">
-        Info Pemasangan & Voucher Hubungi:<br>
-        <a href="https://wa.me/6285782781843" class="wa-link">WhatsApp: 0857 8278 1843</a>
+        Info Voucher & Pemasangan:<br>
+        <a href="https://wa.me/6285782781843" class="wa-link">0857 8278 1843</a>
     </div>
+
 </div>
 
 </body>
