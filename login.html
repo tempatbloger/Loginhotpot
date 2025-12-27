@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ASB Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary-color: #f8fafc;
+            --accent-color: #10b981;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body { 
+            background: #e2e8f0; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
+
+        .login-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 400px; 
+            padding: 35px 25px; 
+            border-radius: 28px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            text-align: center; 
+        }
+
+        .brand-section { margin-bottom: 20px; }
+        .brand { color: var(--primary-color); font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+        .location { color: var(--primary-color); font-size: 14px; font-weight: 600; margin-top: -5px; display: block; }
+        .sub-brand { color: var(--text-muted); font-size: 13px; margin-top: 5px; display: block; }
+
+        /* Banner Promo */
+        .promo-banner { 
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark)); 
+            color: white; 
+            padding: 18px; 
+            border-radius: 18px; 
+            margin-bottom: 20px;
+        }
+        .promo-desc { font-size: 11px; opacity: 0.9; display: block; text-transform: uppercase; letter-spacing: 1px; }
+        .promo-price { font-size: 22px; font-weight: 700; display: block; }
+
+        /* Form Input */
+        form { margin-bottom: 20px; }
+        input { 
+            width: 100%; 
+            padding: 15px; 
+            border: 2px solid #f1f5f9; 
+            border-radius: 14px; 
+            outline: none; 
+            transition: 0.3s; 
+            text-align: center; 
+            font-size: 16px; 
+            font-weight: 600; 
+            background: #f8fafc;
+        }
+        input:focus { border-color: var(--primary-color); background: white; }
+        
+        .btn-connect { 
+            width: 100%; 
+            background: var(--primary-color); 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            border-radius: 14px; 
+            font-weight: 700; 
+            margin-top: 12px;
+            cursor: pointer; 
+            transition: 0.3s;
+        }
+        .btn-connect:hover { background: var(--primary-dark); box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3); }
+
+        /* Fitur Trial */
+        .trial-section {
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+            margin-bottom: 25px;
+        }
+        .btn-trial {
+            text-decoration: none;
+            display: block;
+            background: #f1f5f9;
+            color: var(--primary-color);
+            padding: 12px;
+            border-radius: 14px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            transition: 0.3s;
+            font-size: 14px;
+        }
+        .btn-trial:hover { background: #e2e8f0; }
+
+        /* Paket Rumahan */
+        .home-package {
+            background: #f0fdf4;
+            border: 1px dashed #22c55e;
+            padding: 15px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+        }
+        .home-package-info b { color: #16a34a; font-size: 14px; display: block; }
+        .home-package-info span { font-size: 11px; color: #15803d; }
+        .home-price { text-align: right; }
+        .home-price .amount { display: block; font-weight: 700; color: #16a34a; font-size: 15px; }
+
+        /* Footer */
+        .footer { 
+            font-size: 12px; 
+            color: var(--text-muted); 
+            border-top: 1px solid #f1f5f9; 
+            padding-top: 20px; 
+        }
+        .wa-link { 
+            color: #16a34a; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <div class="brand-section">
+        <div class="brand">ASB Network</div>
+        <span class="location">Wifi Bakan Loa</span>
+        <span class="sub-brand">Internet Cepat & Stabil</span>
+    </div>
+
+    <div class="promo-banner">
+        <span class="promo-desc">Hotspot Harian</span>
+        <span class="promo-price">Rp 3.000 / Hari</span>
+    </div>
+
+    <form action="$(link-login-only)" method="post">
+        <input type="hidden" name="dst" value="$(link-orig)" />
+        <input name="username" type="text" placeholder="Masukkan Kode Voucher" required autocomplete="off">
+        <input name="password" type="hidden" value="">
+        <button type="submit" class="btn-connect">HUBUNGKAN SEKARANG</button>
+    </form>
+
+    $(if trial == 'yes')
+    <div class="trial-section">
+        <span style="font-size: 12px; color: var(--text-muted); display: block; margin-bottom: 10px;">Ingin mencoba dulu?</span>
+        <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)" class="btn-trial">
+            COBA GRATIS (5 MENIT)
+        </a>
+    </div>
+    $(endif)
+
+    <div class="home-package">
+        <div class="home-package-info">
+            <b>Pasang WiFi Rumah</b>
+            <span>Tanpa Kuota (Unlimited)</span>
+        </div>
+        <div class="home-price">
+            <span class="amount">135rb</span>
+            <span style="font-size: 10px; color: #15803d;">/ Bulan</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        Info Pemasangan & Voucher Hubungi:<br>
+        <a href="https://wa.me/6285782781843" class="wa-link">
+             WhatsApp: 0857 8278 1843
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
