@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Koneksi - ASB Network</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent-color: #10b981;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body { 
+            background: #e2e8f0; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        }
+
+        .status-card { 
+            background: white; 
+            width: 100%; 
+            max-width: 400px; 
+            padding: 35px 25px; 
+            border-radius: 28px; 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            text-align: center; 
+        }
+
+        .brand { color: var(--primary-color); font-size: 24px; font-weight: 700; }
+        .location { color: var(--primary-color); font-size: 13px; font-weight: 600; margin-top: -5px; display: block; margin-bottom: 10px; }
+        .welcome-msg { color: var(--text-main); font-size: 15px; margin-bottom: 25px; display: block; border-bottom: 1px solid #f1f5f9; padding-bottom: 15px; }
+
+        /* Status Grid */
+        .status-box {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .info-item {
+            background: #f8fafc;
+            padding: 15px 10px;
+            border-radius: 16px;
+            border: 1px solid #f1f5f9;
+        }
+        .info-label { display: block; font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .info-value { display: block; font-size: 13px; font-weight: 700; color: var(--text-main); margin-top: 4px; }
+
+        /* Paket Rumahan Promo */
+        .home-package {
+            background: #f0fdf4;
+            border: 1px dashed #22c55e;
+            padding: 15px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: left;
+        }
+        .home-package-info b { color: #16a34a; font-size: 13px; display: block; }
+        .home-package-info span { font-size: 11px; color: #15803d; }
+        .home-price { text-align: right; }
+        .home-price .amount { display: block; font-weight: 700; color: #16a34a; font-size: 14px; background: white; padding: 2px 8px; border-radius: 8px; }
+
+        .btn-logout { 
+            width: 100%; 
+            background: #fee2e2; 
+            color: #ef4444; 
+            border: none; 
+            padding: 14px; 
+            border-radius: 14px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: 0.3s;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        .btn-logout:hover { background: #fecaca; }
+
+        .footer { border-top: 1px solid #f1f5f9; padding-top: 20px; }
+        .wa-link { 
+            color: #16a34a; 
+            text-decoration: none; 
+            font-weight: 700; 
+            font-size: 13px;
+            display: inline-block;
+        }
+    </style>
+    
+    <script>
+        // Refresh otomatis setiap 1 menit untuk memperbarui status sisa waktu
+        setTimeout(function(){
+            location.reload();
+        }, 60000);
+    </script>
+</head>
+<body>
+
+<div class="status-card">
+    <div class="brand">ASB Network</div>
+    <span class="location">Wifi Bakan Loa</span>
+    
+    <span class="welcome-msg">
+        $(if login-by == 'trial')
+            Sedang Mencoba: <b>Gratis 5 Menit</b>
+        $(else)
+            Terhubung: <b>$(username)</b>
+        $(endif)
+    </span>
+
+    <div class="status-box">
+        <div class="info-item">
+            <span class="info-label">Durasi Pakai</span>
+            <span class="info-value">$(uptime)</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Sisa Waktu</span>
+            <span class="info-value">$(if session-time-left)$(session-time-left)$(else)Unlimited$(endif)</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Download</span>
+            <span class="info-value">$(bytes-out-nice)</span>
+        </div>
+        <div class="info-item">
+            <span class="info-label">Upload</span>
+            <span class="info-value">$(bytes-in-nice)</span>
+        </div>
+        <div class="info-item" style="grid-column: span 2;">
+            <span class="info-label">Alamat IP</span>
+            <span class="info-value">$(ip)</span>
+        </div>
+    </div>
+
+    <div class="home-package">
+        <div class="home-package-info">
+            <b>Internet Unlimited Rumah</b>
+            <span>Hanya 135rb / Bulan</span>
+        </div>
+        <div class="home-price">
+            <a href="https://wa.me/6285782781843" style="text-decoration:none;">
+                <span class="amount">DAFTAR</span>
+            </a>
+        </div>
+    </div>
+
+    <form action="$(link-logout)" name="logout" method="post">
+        <button type="submit" class="btn-logout">PUTUSKAN KONEKSI (LOGOUT)</button>
+    </form>
+
+    <div class="footer">
+        <a href="https://wa.me/6285782781843" class="wa-link">
+             Bantuan: 0857 8278 1843
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
